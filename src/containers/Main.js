@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
-import Homepage from "../components/Homepage";
-import AuthForm from "../components/AuthForm";
+import Homepage from "../organisms/Homepage";
+import AuthForm from "../molecules/AuthForm";
 import withAuth from "../hocs/withAuth";
+import Feed from "../organisms/Feed";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
@@ -55,6 +56,11 @@ const Main = props => {
         <Route
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
+        />
+        <Route
+          exact
+          path="/feed"
+          render={props => <Feed {...props} currentUser={currentUser} />}
         />
         <Route
           exact
