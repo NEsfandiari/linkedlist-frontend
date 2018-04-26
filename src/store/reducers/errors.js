@@ -1,10 +1,14 @@
-import { ADD_ERROR, REMOVE_ERROR } from "../actionTypes";
+import * as t from '../actionTypes';
 
-export default (state = { message: null }, action) => {
+const DEFAULT_STATE = {
+  message: null
+};
+
+export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case ADD_ERROR:
+    case t.ADD_ERROR:
       return { ...state, message: action.error };
-    case REMOVE_ERROR:
+    case t.REMOVE_ERROR:
       return { ...state, message: null };
     default:
       return state;
