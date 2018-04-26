@@ -64,6 +64,16 @@ const Main = props => {
         />
         <Route
           exact
+          path="/user"
+          render={props => <User {...props} currentUser={currentUser} />}
+        />
+        <Route
+          exact
+          path="/company"
+          render={props => <Company {...props} currentUser={currentUser} />}
+        />
+        <Route
+          exact
           path="/"
           render={props => <Homepage {...props} currentUser={currentUser} />}
         />
