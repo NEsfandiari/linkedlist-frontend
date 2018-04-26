@@ -9,6 +9,8 @@ const Company = ({ currentUser }) => {
       <div>
         <h1>Welcome to Linked List!</h1>
         <Link to="/signup">Sign up here</Link>
+        <br />
+        <Link to="/signin">Already a member?</Link>
       </div>
     );
   }

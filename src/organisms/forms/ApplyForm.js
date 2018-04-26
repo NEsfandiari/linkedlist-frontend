@@ -1,30 +1,33 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class AuthForm extends Component {
+class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: ""
+      email: '',
+      username: '',
+      password: '',
+      firstName: '',
+      lastName: ''
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const authType = this.props.signIn ? "signin" : "signup";
-    this.props
-      .onAuth(authType, this.state)
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(() => {
-        // we failed to log in, display the error message
-        return;
-      });
+    // on submit, apply to company for job
+
+    // * previous AuthForm logic: *
+    // const authType = this.props.signIn ? 'signin' : 'signup';
+    // this.props
+    //   .onAuth(authType, this.state)
+    //   .then(() => {
+    //     this.props.history.push('/');
+    //   })
+    //   .catch(() => {
+    //     // we failed to log in, display the error message
+    //     return;
+    //   });
   };
 
   handleChange = e => {
@@ -33,14 +36,7 @@ class AuthForm extends Component {
 
   render() {
     const { email, username, password, firstName, lastName } = this.state;
-    const {
-      signIn,
-      heading,
-      buttonText,
-      errors,
-      history,
-      removeError
-    } = this.props;
+    const { signIn, heading, buttonText, errors, history, removeError } = this.props;
     history.listen(() => {
       removeError();
     });
@@ -110,7 +106,7 @@ class AuthForm extends Component {
     );
   }
 }
-AuthForm.propTypes = {
+ApplyForm.propTypes = {
   buttonText: PropTypes.string,
   errors: PropTypes.object,
   heading: PropTypes.string,
@@ -120,4 +116,4 @@ AuthForm.propTypes = {
   removeError: PropTypes.func
 };
 
-export default AuthForm;
+export default ApplyForm;
