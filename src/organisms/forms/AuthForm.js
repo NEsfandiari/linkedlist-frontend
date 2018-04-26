@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: ""
+      email: '',
+      username: '',
+      password: '',
+      firstName: '',
+      lastName: ''
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const authType = this.props.signIn ? "signin" : "signup";
+    const authType = this.props.signIn ? 'signin' : 'signup';
     this.props
       .onAuth(authType, this.state)
       .then(() => {
-        this.props.history.push("/");
+        this.props.history.push('/feed');
       })
       .catch(() => {
         // we failed to log in, display the error message
@@ -33,14 +33,7 @@ class AuthForm extends Component {
 
   render() {
     const { email, username, password, firstName, lastName } = this.state;
-    const {
-      signIn,
-      heading,
-      buttonText,
-      errors,
-      history,
-      removeError
-    } = this.props;
+    const { signIn, heading, buttonText, errors, history, removeError } = this.props;
     history.listen(() => {
       removeError();
     });

@@ -1,23 +1,28 @@
-import React, { Component } from "react";
-import withAuth from "../hocs/withAuth";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import withAuth from '../hocs/withAuth';
 
-class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+const Feed = ({ currentUser }) => {
+  if (!currentUser.isAuthenticated) {
+    return (
+      <div>
+        <h1>Welcome to Linked List!</h1>
+        <Link to="/signup">Sign up here</Link>
+        <br />
+        <Link to="/signin">Already a member?</Link>
+      </div>
+    );
   }
-  render() {
-    if (this.props.currentUser.isAuthenticated) {
-      return (
-        <div>
-          <ul>
-            <h1>Sup</h1>
-          </ul>
-        </div>
-      );
-    }
-    return <h1>HI</h1>;
-  }
-}
+  return (
+    <div>
+      <h1>Job Feed</h1>
+      <ul>
+        <li>Job 1 | Apply | View Company</li>
+        <li>Job 2 | Apply | View Company</li>
+        <li>Job 3 | Apply | View Company</li>
+      </ul>
+    </div>
+  );
+};
 
 export default withAuth(Feed);

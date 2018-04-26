@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Homepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -8,6 +8,7 @@ const Homepage = ({ currentUser }) => {
       <div>
         <h1>Welcome to Linked List!</h1>
         <Link to="/signup">Sign up here</Link>
+        <Link to="/signin">Already a member?</Link>
       </div>
     );
   }

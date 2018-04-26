@@ -7,6 +7,7 @@ class ApplyForm extends Component {
     this.state = {
       email: '',
       username: '',
+      password: '',
       firstName: '',
       lastName: ''
     };
