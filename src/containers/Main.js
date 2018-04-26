@@ -5,7 +5,7 @@ import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
 import Homepage from "../organisms/Homepage";
-import AuthForm from "../molecules/AuthForm";
+import AuthForm from "../organisms/forms/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Feed from "../organisms/Feed";
 import User from "../organisms/User";
