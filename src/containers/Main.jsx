@@ -99,7 +99,11 @@ const Main = props => {
             <Feed fetchJobsRequest={fetchJobsRequest} jobs={jobs} currentUser={currentUser} />
           )}
         />
-        <Route exact path="/user" render={props => <User {...props} currentUser={currentUser} />} />
+        <Route
+          exact
+          path="/user/:username"
+          render={props => <User {...props} currentUser={currentUser} />}
+        />
         <Route
           exact
           path="/company"
