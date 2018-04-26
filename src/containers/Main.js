@@ -8,6 +8,8 @@ import Homepage from "../organisms/Homepage";
 import AuthForm from "../molecules/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Feed from "../organisms/Feed";
+import User from "../organisms/User";
+import Company from "../organisms/Company";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
