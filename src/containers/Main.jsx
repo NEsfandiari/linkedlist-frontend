@@ -1,18 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
-import { removeError } from "../store/actions/errors";
-import { authUser, loginUser } from "../store/actions/auth";
-import Homepage from "../organisms/Homepage";
-import AuthForm from "../organisms/forms/AuthForm";
-import withAuth from "../hocs/withAuth";
-import Feed from "../organisms/Feed";
-import User from "../organisms/User";
-import Company from "../organisms/Company";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { removeError } from '../store/actions/errors';
+import { authUser, loginUser } from '../store/actions/auth';
+import { fetchJobsRequest } from '../store/actions/jobs';
+import Homepage from '../organisms/Homepage';
+import AuthForm from '../organisms/forms/AuthForm';
+import withAuth from '../hocs/withAuth';
+import Feed from '../organisms/Feed';
+import User from '../organisms/User';
+import Company from '../organisms/Company';
 
 const Main = props => {
-  const { authUser, currentUser, errors, removeError, loginUser } = props;
+  const { authUser, currentUser, errors, removeError, loginUser, jobs, fetchJobsRequest } = props;
+
 
   // const routes = [
   //   {
@@ -90,16 +92,16 @@ const Main = props => {
             );
           }}
         />
-        <Route
-          path="/secret"
-          component={withAuth(() => <h1>Secret Page!</h1>)}
-        />
+        <Route path="/secret" component={withAuth(() => <h1>Secret Page!</h1>)} />
         <Route
           exact
           path="/feed"
-          render={props => <Feed {...props} currentUser={currentUser} />}
+          render={props => (
+            <Feed fetchJobsRequest={fetchJobsRequest} jobs={jobs} currentUser={currentUser} />
+          )}
         />
         <Route
+          exact
           path="/user/:username"
           render={props => <User {...props} currentUser={currentUser} />}
         />
@@ -108,11 +110,9 @@ const Main = props => {
           path="/company"
           render={props => <Company {...props} currentUser={currentUser} />}
         />
-        <Route
-          exact
-          path="/"
-          render={props => <Homepage {...props} currentUser={currentUser} />}
-        />
+
+        <Route exact path="/" render={props => <Homepage {...props} currentUser={currentUser} />} />
+
       </Switch>
 
       {/* {routes.map((route, i) => <renderSubRoutes key={i} {...route} />)} */}
@@ -123,6 +123,7 @@ const Main = props => {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
+    jobs: state.jobs,
     errors: state.errors
   };
 };
@@ -138,5 +139,5 @@ Main.propTypes = {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { loginUser, authUser, removeError })(Main)
+  connect(mapStateToProps, { loginUser, authUser, removeError, fetchJobsRequest })(Main)
 );
