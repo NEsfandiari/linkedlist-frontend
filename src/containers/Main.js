@@ -13,6 +13,41 @@ import Company from "../organisms/Company";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
+
+  // const routes = [
+  //   {
+  //     path: '/signin',
+  //     component: AuthForm
+  //   },
+  //   {
+  //     path: '/signup',
+  //     component: AuthForm
+  //   },
+  //   {
+  //     path: '/feed',
+  //     component: Feed
+  //   },
+  //   {
+  //     path: '/user',
+  //     component: User
+  //   },
+  //   {
+  //     path: '/company',
+  //     component: Company
+  //   },
+  //   {
+  //     path: '/',
+  //     component: Homepage
+  //   }
+  // ];
+
+  // const renderSubRoutes = route => (
+  //   <Route
+  //     path={route.path}
+  //     render={props => <route.component {...props} routes={route.routes} />}
+  //   />
+  // );
+
   return (
     <div className="container">
       <Switch>
@@ -80,6 +115,8 @@ const Main = props => {
           render={props => <Homepage {...props} currentUser={currentUser} />}
         />
       </Switch>
+
+      {/* {routes.map((route, i) => <renderSubRoutes key={i} {...route} />)} */}
     </div>
   );
 };
