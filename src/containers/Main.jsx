@@ -100,8 +100,7 @@ const Main = props => {
           render={props => <Feed {...props} currentUser={currentUser} />}
         />
         <Route
-          exact
-          path="/user"
+          path="/user/:username"
           render={props => <User {...props} currentUser={currentUser} />}
         />
         <Route

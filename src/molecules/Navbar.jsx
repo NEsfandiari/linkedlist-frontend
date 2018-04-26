@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // import { logout } from '../store/actions/auth';
 
 export default class Navbar extends Component {
@@ -10,6 +10,7 @@ export default class Navbar extends Component {
   };
 
   render() {
+    const curUser = this.props.currentUser.user.username;
     return (
       <nav>
         {this.props.currentUser.isAuthenticated ? (
@@ -18,6 +19,9 @@ export default class Navbar extends Component {
               <a href="/logout" onClick={this.logout}>
                 Log out
               </a>
+            </li>
+            <li>
+              <Link to={"/user/" + curUser}>{curUser}</Link>
             </li>
           </ul>
         ) : (
