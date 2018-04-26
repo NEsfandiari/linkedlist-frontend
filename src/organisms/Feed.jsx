@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../hocs/withAuth';
 
+
 class Feed extends Component {
   componentDidMount() {
     this.props.fetchJobsRequest();
