@@ -1,41 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import withAuth from "../hocs/withAuth";
 import ProfHead from "../molecules/ProfileHead";
 import Xp from "../molecules/ProfileXp";
+import Education from "../molecules/ProfileEducation";
+import Skills from "../molecules/ProfileSkills";
 
-const User = ({ currentUser, match }) => {
-  if (currentUser.isAuthenticated) {
-    // Authed
-    const userName = currentUser.user.username;
-    const paramName = match.params.username;
-
-    return (
-      <div>
-        <ProfHead paramName={paramName} userName={userName} />
-        <Xp paramName={paramName} userName={userName} />
-        <ul>
-          <li>Add resume</li>
-          <li>Add messages</li>
-        </ul>
-      </div>
-    );
+class User extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-  // Not Authed
-  else
-    return (
-      <div>
-        <h1>Welcome to Linked List!</h1>
-        <Link to="/signup">Sign up here</Link>
-        <br />
-        <Link to="/signin">Already a member?</Link>
-      </div>
-    );
-};
+  componentDidMount() {
+    const paramName = this.props.match.params.username;
+    this.props.fetchUserRequest(paramName);
+  }
+
+  render() {
+    if (this.props.currentUser.isAuthenticated) {
+      // Authed
+      const userName = this.props.currentUser.user.username;
+      const userData = this.props.user;
+      return (
+        <div>
+          <ProfHead userData={userData} userName={userName} />
+          <Xp userData={userData} userName={userName} />
+          <Education userData={userData} userName={userName} />
+          <Skills userData={userData} userName={userName} />
+        </div>
+      );
+    }
+    // Not Authed
+    else
+      return (
+        <div>
+          <h1>Welcome to Linked List!</h1>
+          <Link to="/signup">Sign up here</Link>
+          <br />
+          <Link to="/signin">Already a member?</Link>
+        </div>
+      );
+  }
+}
 
 User.propTypes = {
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  match: PropTypes.object,
+  user: PropTypes.object
 };
 
 export default withAuth(User);
