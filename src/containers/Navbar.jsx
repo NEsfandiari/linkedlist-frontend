@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 import Navbar from '../molecules/Navbar';
 import { fetchUsersRequest } from '../store/actions/users';
+import { withRouter } from 'react-router-dom';
 
 function mapStateToProps(state) {
   return {
@@ -10,4 +11,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logout, fetchUsersRequest })(Navbar);
+export default withRouter(connect(mapStateToProps, { logout, fetchUsersRequest })(Navbar));

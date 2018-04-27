@@ -12,7 +12,6 @@ export default class Navbar extends Component {
   };
 
   render() {
-    console.log(this.props);
     const curUser = this.props.currentUser.user.username;
     return (
       <nav>
@@ -24,12 +23,13 @@ export default class Navbar extends Component {
               </a>
             </li>
             <li>
-              <Link to={'/user/' + curUser}>{curUser}</Link>
+              <Link to={'/users/' + curUser}>{curUser}</Link>
             </li>
             <li>
               <SearchUsers
                 fetchUsersRequest={this.props.fetchUsersRequest}
                 users={this.props.users}
+                {...this.props}
               />
             </li>
           </ul>
@@ -51,5 +51,6 @@ export default class Navbar extends Component {
 Navbar.propTypes = {
   currentUser: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
-  fetchUsersRequest: PropTypes.func.isRequired
+  fetchUsersRequest: PropTypes.func.isRequired,
+  users: PropTypes.array
 };

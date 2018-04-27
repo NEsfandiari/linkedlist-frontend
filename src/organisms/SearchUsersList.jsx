@@ -5,10 +5,9 @@ import withAuth from '../hocs/withAuth';
 import SearchedUser from '../molecules/SearchedUser';
 
 class SearchUsersList extends Component {
-  // pass down state prop of returned users
-  // componentDidMount() {
-  //   this.props.fetchJobsRequest();
-  // }
+  componentDidMount() {
+    this.props.fetchUsersRequest();
+  }
 
   render() {
     if (!this.props.currentUser.isAuthenticated) {
@@ -21,10 +20,12 @@ class SearchUsersList extends Component {
         </div>
       );
     }
+    // if search, return search
+    // else return all
     return (
       <div>
         <h1>Users Search Reults</h1>
-        <ul>{this.props.users.map(user => <SearchedUser key={user._id} user={user} />)}</ul>
+        {/* <ul>{this.props.users.map(user => <SearchedUser key={user._id} user={user} />)}</ul> */}
         <ul>
           <li>User 1 | Message | View Profile</li>
           <li>User 2 | Message | View Profile</li>
@@ -37,7 +38,8 @@ class SearchUsersList extends Component {
 
 SearchUsersList.propTypes = {
   currentUser: PropTypes.object,
-  users: PropTypes.array
+  users: PropTypes.array,
+  fetchUsersRequest: PropTypes.func
 };
 
-export default withAuth(Feed);
+export default withAuth(SearchUsersList);
