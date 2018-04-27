@@ -15,7 +15,6 @@ import Company from '../organisms/Company';
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser, jobs, fetchJobsRequest } = props;
 
-
   // const routes = [
   //   {
   //     path: '/signin',
@@ -112,7 +111,6 @@ const Main = props => {
         />
 
         <Route exact path="/" render={props => <Homepage {...props} currentUser={currentUser} />} />
-
       </Switch>
 
       {/* {routes.map((route, i) => <renderSubRoutes key={i} {...route} />)} */}

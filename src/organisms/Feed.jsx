@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import withAuth from '../hocs/withAuth';
-
+import Job from '../molecules/Job';
 
 class Feed extends Component {
   componentDidMount() {
@@ -19,11 +20,10 @@ class Feed extends Component {
         </div>
       );
     }
-
     return (
       <div>
         <h1>Job Feed</h1>
-        <ul>{this.props.jobs.map(job => <li>{job.data.title}</li>)}</ul>
+        <ul>{this.props.jobs.map(job => <Job key={job._id} job={job} />)}</ul>
         <ul>
           <li>Job 1 | Apply | View Company</li>
           <li>Job 2 | Apply | View Company</li>
@@ -33,5 +33,10 @@ class Feed extends Component {
     );
   }
 }
+
+Feed.propTypes = {
+  currentUser: PropTypes.object,
+  jobs: PropTypes.array
+};
 
 export default withAuth(Feed);
