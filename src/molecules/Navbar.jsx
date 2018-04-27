@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import SearchUsers from './SearchUsers';
 // import { logout } from '../store/actions/auth';
 
 export default class Navbar extends Component {
@@ -21,7 +22,10 @@ export default class Navbar extends Component {
               </a>
             </li>
             <li>
-              <Link to={"/user/" + curUser}>{curUser}</Link>
+              <Link to={'/user/' + curUser}>{curUser}</Link>
+            </li>
+            <li>
+              <SearchUsers />
             </li>
           </ul>
         ) : (
