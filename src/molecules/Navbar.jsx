@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SearchUsers from './SearchUsers';
+// import { fetchUsersRequest } from '../store/actions/users';
 // import { logout } from '../store/actions/auth';
 
 export default class Navbar extends Component {
@@ -11,6 +12,7 @@ export default class Navbar extends Component {
   };
 
   render() {
+    console.log(this.props);
     const curUser = this.props.currentUser.user.username;
     return (
       <nav>
@@ -25,7 +27,10 @@ export default class Navbar extends Component {
               <Link to={'/user/' + curUser}>{curUser}</Link>
             </li>
             <li>
-              <SearchUsers />
+              <SearchUsers
+                fetchUsersRequest={this.props.fetchUsersRequest}
+                users={this.props.users}
+              />
             </li>
           </ul>
         ) : (
@@ -45,5 +50,6 @@ export default class Navbar extends Component {
 
 Navbar.propTypes = {
   currentUser: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  fetchUsersRequest: PropTypes.func.isRequired
 };

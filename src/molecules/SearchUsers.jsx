@@ -15,9 +15,9 @@ export default class SearchUsers extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.searchUsers(this.state);
+    this.props.fetchUsersRequest(this.state);
     this.setState({ searchInput: '' });
-    e.target.reset;
+    e.target.reset();
   };
 
   render() {
@@ -36,5 +36,5 @@ export default class SearchUsers extends Component {
 }
 
 SearchUsers.propTypes = {
-  searchUsers: PropTypes.func
+  fetchUsersRequest: PropTypes.func.isRequired
 };

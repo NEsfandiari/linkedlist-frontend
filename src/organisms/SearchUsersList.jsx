@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import withAuth from '../hocs/withAuth';
-import Job from '../molecules/Job';
+import SearchedUser from '../molecules/SearchedUser';
 
-class Feed extends Component {
-  componentDidMount() {
-    this.props.fetchJobsRequest();
-  }
+class SearchUsersList extends Component {
+  // pass down state prop of returned users
+  // componentDidMount() {
+  //   this.props.fetchJobsRequest();
+  // }
 
   render() {
-    console.log(this.props);
     if (!this.props.currentUser.isAuthenticated) {
       return (
         <div>
@@ -23,22 +23,21 @@ class Feed extends Component {
     }
     return (
       <div>
-        <h1>Job Feed</h1>
-        <ul>{this.props.jobs.map(job => <Job key={job._id} job={job} />)}</ul>
+        <h1>Users Search Reults</h1>
+        <ul>{this.props.users.map(user => <SearchedUser key={user._id} user={user} />)}</ul>
         <ul>
-          <li>Job 1 | Apply | View Company</li>
-          <li>Job 2 | Apply | View Company</li>
-          <li>Job 3 | Apply | View Company</li>
+          <li>User 1 | Message | View Profile</li>
+          <li>User 2 | Message | View Profile</li>
+          <li>User 3 | Message | View Profile</li>
         </ul>
       </div>
     );
   }
 }
 
-Feed.propTypes = {
+SearchUsersList.propTypes = {
   currentUser: PropTypes.object,
-  fetchJobsRequest: PropTypes.func,
-  jobs: PropTypes.array
+  users: PropTypes.array
 };
 
 export default withAuth(Feed);
