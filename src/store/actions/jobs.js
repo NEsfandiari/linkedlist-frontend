@@ -28,5 +28,3 @@ export function fetchJobsRequest() {
     }
   };
 }
-
-export const READ_JOBS = 'READ_JOBS';
