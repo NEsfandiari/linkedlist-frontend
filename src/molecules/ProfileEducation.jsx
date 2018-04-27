@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Xp extends Component {
+class Education extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,56 +15,40 @@ class Xp extends Component {
     this.setState({ isAdding: !this.state.isAdding });
   };
 
-  showEdit = e => {
+  handleEdit = e => {
     e.preventDefault();
     this.setState({ isEditing: !this.state.isEditing });
   };
 
   render() {
     const add = this.state.isEditing ? (
-      <button onClick={this.showAdd}>+Add Experience</button>
+      <button onClick={this.showAdd}>+Add Education</button>
     ) : (
       <br />
     );
     const newForm = this.state.isAdding ? (
       <form action="">
-        <div>
-          <input type="text" name="job" placeholder="Job Title" />
-          <input type="text" name="Company" placeholder="Company" />
-        </div>
-        <div>
-          <label htmlFor="start">Start</label>
-          <input type="date" name="start" />
-          <label htmlFor="end">End</label>
-          <input type="date" name="end" />
-        </div>
-        <textarea
-          name="description"
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Describe your cod3 trickz"
-        />
+        <input type="text" placeholder="Degree description" />
         <button type="submit">Submit</button>
       </form>
     ) : (
       <br />
     );
-    const xps = this.props.userData.experience || [];
-    const XpLi = xps.map(xp => <li>{xp}</li>);
+    const edus = this.props.userData.education || [];
+    const eduLi = edus.map(edu => <li>{edu}</li>);
     if (this.props.userName === this.props.userData.username) {
       return (
         <div>
           <div>
             <button>Hide</button>
-            <i className="fas fa-briefcase" />
-            <h2>Experience</h2>
+            <i className="fas fa-graduation-cap" />
+            <h2>Education</h2>
             {add}
-            <button onClick={this.showEdit}>Edit</button>
+            <button onClick={this.handleEdit}>Edit</button>
           </div>
           <ul>
             {newForm}
-            {XpLi}
+            {eduLi}
           </ul>
         </div>
       );
@@ -72,17 +56,16 @@ class Xp extends Component {
       return (
         <div>
           <div>
-            <i className="fas fa-briefcase" />
+            <i className="fas fa-graduation-cap" />
             <h2>Experience</h2>
           </div>
-
-          <ul>{XpLi}</ul>
+          <ul>{eduLi}</ul>
         </div>
       );
   }
 }
-Xp.propTypes = {
+Education.propTypes = {
   username: PropTypes.string
 };
 
-export default Xp;
+export default Education;
