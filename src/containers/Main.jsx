@@ -26,6 +26,7 @@ const Main = props => {
     user
   } = props;
 
+
   // const routes = [
   //   {
   //     path: '/signin',
@@ -135,11 +136,13 @@ const Main = props => {
           render={props => <Company {...props} currentUser={currentUser} />}
         />
 
+
         <Route
           exact
           path="/"
           render={props => <Homepage {...props} currentUser={currentUser} />}
         />
+
       </Switch>
 
       {/* {routes.map((route, i) => <renderSubRoutes key={i} {...route} />)} */}
