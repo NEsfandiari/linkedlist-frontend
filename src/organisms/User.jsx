@@ -25,9 +25,21 @@ class User extends Component {
       return (
         <div>
           <ProfHead userData={userData} userName={userName} />
-          <Xp userData={userData} userName={userName} />
-          <Education userData={userData} userName={userName} />
-          <Skills userData={userData} userName={userName} />
+          <Xp
+            userData={userData}
+            userName={userName}
+            UpdateUserRequest={this.props.UpdateUserRequest}
+          />
+          <Education
+            userData={userData}
+            userName={userName}
+            UpdateUserRequest={this.props.UpdateUserRequest}
+          />
+          <Skills
+            userData={userData}
+            userName={userName}
+            UpdateUserRequest={this.props.UpdateUserRequest}
+          />
         </div>
       );
     }

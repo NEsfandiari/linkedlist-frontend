@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import XpForm from "./ProfileXpForm";
 
 class Xp extends Component {
   constructor(props) {
@@ -21,37 +22,25 @@ class Xp extends Component {
   };
 
   render() {
+    const userData = this.props.userData;
+
     const add = this.state.isEditing ? (
       <button onClick={this.showAdd}>+Add Experience</button>
     ) : (
       <br />
     );
     const newForm = this.state.isAdding ? (
-      <form action="">
-        <div>
-          <input type="text" name="job" placeholder="Job Title" />
-          <input type="text" name="Company" placeholder="Company" />
-        </div>
-        <div>
-          <label htmlFor="start">Start</label>
-          <input type="date" name="start" />
-          <label htmlFor="end">End</label>
-          <input type="date" name="end" />
-        </div>
-        <textarea
-          name="description"
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Describe your cod3 trickz"
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <XpForm
+        userData={userData}
+        UpdateUserRequest={this.props.UpdateUserRequest}
+      />
     ) : (
       <br />
     );
+
     const xps = this.props.userData.experience || [];
     const XpLi = xps.map(xp => <li>{xp}</li>);
+
     if (this.props.userName === this.props.userData.username) {
       return (
         <div>
