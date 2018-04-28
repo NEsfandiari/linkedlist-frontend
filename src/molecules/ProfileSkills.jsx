@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import SkillsForm from "./ProfileSkillsForm";
 
 class Skills extends Component {
   constructor(props) {
@@ -21,25 +22,27 @@ class Skills extends Component {
   };
 
   render() {
+    const userData = this.props.userData;
+
     const add = this.state.isEditing ? (
       <button onClick={this.showAdd}>+Add Skill</button>
     ) : (
       <br />
     );
     const newForm = this.state.isAdding ? (
-      <form action="">
-        <input type="text" placeholder="Skill" />
-        <button type="submit">Submit</button>
-      </form>
+      <SkillsForm
+        userData={userData}
+        UpdateUserRequest={this.props.UpdateUserRequest}
+      />
     ) : (
       <br />
     );
     const skills =
       (this.props.userData &&
         this.props.userData.skills &&
-        this.props.userData.skills.items) ||
+        this.props.userData.skills) ||
       [];
-    const skillLi = skills.map(skill => <button>{skill.title}</button>);
+    const skillLi = skills.map(skill => <li>{skill}</li>);
     if (this.props.userName === this.props.userData.username) {
       return (
         <div>

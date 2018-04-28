@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
-import { removeError } from '../store/actions/errors';
-import { authUser, loginUser } from '../store/actions/auth';
-import { fetchJobsRequest } from '../store/actions/jobs';
-import { fetchUserRequest } from '../store/actions/user';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { removeError } from "../store/actions/errors";
+import { authUser, loginUser } from "../store/actions/auth";
+import { fetchJobsRequest } from "../store/actions/jobs";
+import { fetchUserRequest, UpdateUserRequest } from "../store/actions/user";
 // import { fetchUsersRequest } from '../store/actions/users';
-import Homepage from '../organisms/Homepage';
-import AuthForm from '../organisms/forms/AuthForm';
-import withAuth from '../hocs/withAuth';
-import Feed from '../organisms/Feed';
-import User from '../organisms/User';
-import Company from '../organisms/Company';
+import Homepage from "../organisms/Homepage";
+import AuthForm from "../organisms/forms/AuthForm";
+import withAuth from "../hocs/withAuth";
+import Feed from "../organisms/Feed";
+import User from "../organisms/User";
+import Company from "../organisms/Company";
 
 const Main = props => {
   const {
@@ -22,9 +22,10 @@ const Main = props => {
     removeError,
     loginUser,
     jobs,
+    user,
     fetchJobsRequest,
     fetchUserRequest,
-    user
+    UpdateUserRequest
   } = props;
 
   // const routes = [
@@ -103,12 +104,19 @@ const Main = props => {
             );
           }}
         />
-        <Route path="/secret" component={withAuth(() => <h1>Secret Page!</h1>)} />
+        <Route
+          path="/secret"
+          component={withAuth(() => <h1>Secret Page!</h1>)}
+        />
         <Route
           exact
           path="/feed"
           render={props => (
-            <Feed fetchJobsRequest={fetchJobsRequest} jobs={jobs} currentUser={currentUser} />
+            <Feed
+              fetchJobsRequest={fetchJobsRequest}
+              jobs={jobs}
+              currentUser={currentUser}
+            />
           )}
         />
         <Route
@@ -118,6 +126,7 @@ const Main = props => {
             <User
               {...props}
               fetchUserRequest={fetchUserRequest}
+              UpdateUserRequest={UpdateUserRequest}
               user={user}
               currentUser={currentUser}
             />
@@ -129,7 +138,11 @@ const Main = props => {
           render={props => <Company {...props} currentUser={currentUser} />}
         />
 
-        <Route exact path="/" render={props => <Homepage {...props} currentUser={currentUser} />} />
+        <Route
+          exact
+          path="/"
+          render={props => <Homepage {...props} currentUser={currentUser} />}
+        />
       </Switch>
 
       {/* {routes.map((route, i) => <renderSubRoutes key={i} {...route} />)} */}
@@ -162,6 +175,7 @@ export default withRouter(
     authUser,
     removeError,
     fetchJobsRequest,
-    fetchUserRequest
+    fetchUserRequest,
+    UpdateUserRequest
   })(Main)
 );

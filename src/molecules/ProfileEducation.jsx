@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import EducationForm from "./ProfileEducationForm";
 
 class Education extends Component {
   constructor(props) {
@@ -27,15 +28,15 @@ class Education extends Component {
       <br />
     );
     const newForm = this.state.isAdding ? (
-      <form action="">
-        <input type="text" placeholder="Degree description" />
-        <button type="submit">Submit</button>
-      </form>
+      <EducationForm
+        userData={this.props.userData}
+        UpdateUserRequest={this.props.UpdateUserRequest}
+      />
     ) : (
       <br />
     );
     const edus = this.props.userData.education || [];
-    const eduLi = edus.map(edu => <li>{edu}</li>);
+    const eduLi = edus.map(edu => <li>{edu.institution}</li>);
     if (this.props.userName === this.props.userData.username) {
       return (
         <div>
