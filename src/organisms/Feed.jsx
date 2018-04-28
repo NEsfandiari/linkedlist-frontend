@@ -36,6 +36,7 @@ class Feed extends Component {
 
 Feed.propTypes = {
   currentUser: PropTypes.object,
+  fetchJobsRequest: PropTypes.func,
   jobs: PropTypes.array
 };
 

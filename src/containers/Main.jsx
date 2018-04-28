@@ -6,13 +6,14 @@ import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
 import { fetchJobsRequest } from "../store/actions/jobs";
 import { fetchUserRequest, UpdateUserRequest } from "../store/actions/user";
-// import { fetchUsersRequest } from '../store/actions/users';
+import { fetchUsersRequest } from '../store/actions/users';
 import Homepage from "../organisms/Homepage";
 import AuthForm from "../organisms/forms/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Feed from "../organisms/Feed";
 import User from "../organisms/User";
 import Company from "../organisms/Company";
+import SearchUsersList from '../organisms/SearchUsersList';
 
 const Main = props => {
   const {
@@ -23,6 +24,7 @@ const Main = props => {
     loginUser,
     jobs,
     user,
+    users,
     fetchJobsRequest,
     fetchUserRequest,
     UpdateUserRequest
@@ -121,13 +123,24 @@ const Main = props => {
         />
         <Route
           exact
-          path="/user/:username"
+          path="/users/:username"
           render={props => (
             <User
               {...props}
               fetchUserRequest={fetchUserRequest}
               UpdateUserRequest={UpdateUserRequest}
               user={user}
+              currentUser={currentUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/users"
+          render={props => (
+            <SearchUsersList
+              {...props}
+              fetchUsersRequest={fetchUsersRequest}
               currentUser={currentUser}
             />
           )}
@@ -155,6 +168,7 @@ const mapStateToProps = reduxState => {
     currentUser: reduxState.currentUser,
     jobs: reduxState.jobs,
     user: reduxState.user,
+    users: reduxState.users,
     errors: reduxState.errors
   };
 };

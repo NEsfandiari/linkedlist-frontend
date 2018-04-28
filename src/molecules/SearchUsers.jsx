@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default class SearchUsers extends Component {
@@ -15,9 +16,12 @@ export default class SearchUsers extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.searchUsers(this.state);
+    let inputField = this.state.searchInput.slice(0);
+    const searchName = inputField.replace(/\s/g, '&20');
+    this.props.fetchUsersRequest(searchName);
     this.setState({ searchInput: '' });
-    e.target.reset;
+    e.target.reset();
+    this.props.history.push('/users');
   };
 
   render() {
@@ -36,5 +40,5 @@ export default class SearchUsers extends Component {
 }
 
 SearchUsers.propTypes = {
-  searchUsers: PropTypes.func
+  fetchUsersRequest: PropTypes.func.isRequired
 };
